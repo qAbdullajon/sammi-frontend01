@@ -15,7 +15,6 @@ function App() {
     setLoading(true);
     try {
       const { data } = await $axios.get("/auth/refresh");
-      console.log("data", data);
 
       localStorage.setItem("accessToken", data.accessToken);
       setIsAuth(true);

@@ -18,8 +18,6 @@ $api.interceptors.response.use(
 
       try {
         const { data } = await $axios.get("/auth/refresh");
-        console.log("data", data);
-
         localStorage.setItem("accessToken", data.accessToken);
 
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
