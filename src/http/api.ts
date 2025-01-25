@@ -18,7 +18,7 @@ $api.interceptors.response.use(
 
       try {
         const { data } = await $axios.get("/auth/refresh");
-        console.log(data);
+        console.log("data", data);
 
         localStorage.setItem("accessToken", data.accessToken);
 
