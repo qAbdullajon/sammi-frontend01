@@ -17,11 +17,12 @@ $api.interceptors.response.use(
       originalRequest._isRetry = true;
 
       try {
-        const data1 = await $axios.get("/auth/refresh");
-        console.log(data1);
-        localStorage.setItem("accessToken", data1.data.accessToken);
+        const { data } = await $axios.get("/auth/refresh");
+        console.log(data);
 
-        originalRequest.headers.Authorization = `Bearer ${data1.data.accessToken}`;
+        localStorage.setItem("accessToken", data.accessToken);
+
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return $api.request(originalRequest);
       } catch (err) {
         console.log("Not authorized:", err);
