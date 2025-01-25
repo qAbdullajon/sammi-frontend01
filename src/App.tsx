@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { authStore } from "./store/auth.store";
 import { useEffect } from "react";
 import RecoveryAccount from "./pages/recovery-account";
-import $api from "./http/api";
+import { $axios } from "./http";
 
 function App() {
   const { setIsAuth, setLoading, setUser } = authStore();
@@ -14,7 +14,10 @@ function App() {
   const checkAuth = async () => {
     setLoading(true);
     try {
-      const { data } = await $api.get("/auth/refresh");
+      const { data } = await $axios.get("/auth/refresh");
+      const data1 = await $axios.get("/auth/refresh");
+      console.log(data1);
+
       localStorage.setItem("accessToken", data.accessToken);
       setIsAuth(true);
       setUser(data.user);
@@ -36,7 +39,6 @@ function App() {
   return (
     <>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
