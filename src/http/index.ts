@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = "https://sammi-backend01.onrender.com";
+export const API_URL = "http://localhost:8080";
 
 const $axios = axios.create({
   withCredentials: true,
