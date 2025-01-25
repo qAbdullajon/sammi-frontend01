@@ -14,7 +14,7 @@ function App() {
   const checkAuth = async () => {
     setLoading(true);
     try {
-      const { data } = await $axios.get("/auth/refresh");
+      const { data } = await $axios.get("/auth/refresh", { withCredentials: true });
 
       localStorage.setItem("accessToken", data.accessToken);
       setIsAuth(true);
