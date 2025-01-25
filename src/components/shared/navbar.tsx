@@ -7,7 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import $axios from "@/http";
+import { $axios } from "@/http";
 import { IUser } from "@/interfaces";
 import { useAuth } from "@/hooks/use-auth";
 
