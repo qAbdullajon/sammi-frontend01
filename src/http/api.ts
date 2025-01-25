@@ -6,11 +6,6 @@ const $api = axios.create({
   baseURL: `${API_URL}/api`,
 });
 
-$api.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken")}`;
-  return config;
-});
-
 $api.interceptors.response.use(
   (config) => {
     return config;
@@ -23,14 +18,17 @@ $api.interceptors.response.use(
 
       try {
         const { data } = await $axios.get("/auth/refresh");
+        console.log(data);
         localStorage.setItem("accessToken", data.accessToken);
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return $api.request(originalRequest);
       } catch (err) {
+        console.log(err);
         console.log("Not authorized:");
       }
     }
 
+    console.log(error);
     throw error;
   }
 );
