@@ -1,5 +1,5 @@
+import { $axios, API_URL } from "@/http";
 import axios from "axios";
-import $axios, { API_URL } from ".";
 
 const $api = axios.create({
   withCredentials: true,
@@ -17,10 +17,11 @@ $api.interceptors.response.use(
       originalRequest._isRetry = true;
 
       try {
-        const { data } = await $axios.get("/auth/refresh");
-        localStorage.setItem("accessToken", data.accessToken);
+        const data1 = await $axios.get("/auth/refresh");
+        console.log(data1);
+        localStorage.setItem("accessToken", data1.data.accessToken);
 
-        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+        originalRequest.headers.Authorization = `Bearer ${data1.data.accessToken}`;
         return $api.request(originalRequest);
       } catch (err) {
         console.log("Not authorized:", err);
